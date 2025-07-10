@@ -1,0 +1,53 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Paridad",
+    "version": "1.0.0",
+    "description": "API para determinar si un número es par o impar."
+  },
+  "paths": {
+    "/check-parity": {
+      "get": {
+        "summary": "Verifica la paridad de un número",
+        "parameters": [
+          {
+            "name": "number",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "number" },
+            "description": "Número a verificar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resultado de la paridad",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "number": { "type": "number" },
+                    "parity": { "type": "string", "enum": ["par", "impar"] }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de validación",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
